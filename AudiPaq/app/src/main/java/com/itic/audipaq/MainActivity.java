@@ -3,6 +3,7 @@ package com.itic.audipaq;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,7 +40,9 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences preferences= getSharedPreferences("preferenciaslogin",Context.MODE_PRIVATE);
         boolean sesion= preferences.getBoolean("sesion",false);
         if (sesion){
-            //llamar actividad principal
+            Intent intent = new Intent(MainActivity.this,Home_Auditor.class);
+            startActivity(intent);
+            finish();
         }
         btnIniciar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 pass=password.getText().toString();
                 if (!user.isEmpty()&& !pass.isEmpty()) {
                     //Falta agregar URL del archivo php para iniciar sesion
-                    IniciarSesion("");
+                    IniciarSesion("http://192.168.1.75/validar_usuario.php");
                 }else{
                     Toast.makeText(MainActivity.this, "Por favor rellene todos los campos", Toast.LENGTH_SHORT).show();
                 }
@@ -61,7 +64,8 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 if (!response.isEmpty()){
                     guardarPreferencias();
-                    //Llamar la actividad principal
+                    Intent intent = new Intent(MainActivity.this,Home_Auditor.class);
+                    startActivity(intent);
                     finish();
                 }else{
                     Toast.makeText(MainActivity.this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
@@ -94,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void recuperarpreferencias(){
         SharedPreferences preferences = getSharedPreferences("preferenciaslogin",Context.MODE_PRIVATE);
-        usuario.setText(preferences.getString("usuario","correo@correo.com"));
-        password.setText(preferences.getString("password","admin123"));
+        usuario.setText(preferences.getString("usuario",""));
+        password.setText(preferences.getString("password",""));
     }
 }
