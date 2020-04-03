@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Home_Auditor"></activity>
+        <activity android:name=".activity_ver_Auditorias"></activity>
+        <activity android:name=".activity_ver_Auditores" />
+        <activity android:name=".activity_Detalles_Auditor" />
+        <activity android:name=".Home_Auditor" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
