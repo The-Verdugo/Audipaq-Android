@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/fondologin">
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/fondologin"
+        android:layout_marginTop="55dp"
+        android:layout_centerHorizontal="true"
+        app:civ_border_color="#F39200"
+        app:civ_border_width="3dp"
+        app:civ_shadow="true"
+        app:civ_shadow_radius="10"
+        app:civ_shadow_color="#000000"/>
+
+    <Button
+        android:id="@+id/btnCerrarsesion"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="600dp"
+        android:layout_marginBottom="70dp"
+        android:drawableRight="@drawable/ic_home"
+        android:drawablePadding="30px"
+        android:text="Cerrar sesión"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/txtnombrePerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="255dp"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textViewPERFIL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#CFCDCD"
+        android:paddingTop="20px"
+        android:paddingBottom="20px"
+        android:text="PERFIL"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.007" />
+
+    <View
+        android:id="@+id/profiledivider"
+        android:layout_width="300dp"
+        android:layout_height="1px"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp"
+        android:background="#9C9C9C"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtnombrePerfil"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnViewProgress"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profiledivider"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="50dp"
+        android:drawableTop="@drawable/ic_key"
+        android:drawablePadding="30px"
+        android:text=" Mi Progreso"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.195"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profiledivider"
+        app:layout_constraintVertical_bias="0.047"
+        android:layout_alignParentLeft="true" />
+
+    <Button
+        android:id="@+id/btnEditProfile"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profiledivider"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="230dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="40dp"
+        android:drawableTop="@drawable/ic_person"
+        android:drawablePadding="30px"
+        android:text="Editar Perfil"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toEndOf="@+id/btnViewProgress"
+        app:layout_constraintTop_toBottomOf="@+id/profiledivider"
+        app:layout_constraintVertical_bias="0.007"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40dp" />
+</RelativeLayout>

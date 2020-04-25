@@ -1,0 +1,2 @@
+rootProject.name='Audipaq'
+include ':app'
