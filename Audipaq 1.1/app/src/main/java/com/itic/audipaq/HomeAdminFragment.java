@@ -39,6 +39,7 @@ public class HomeAdminFragment extends Fragment {
     ArrayList<Datos> Lista;
     private TextView textView;
     RequestQueue requestQueue;
+    private String nombre;
     int rol;
     @Nullable
     @Override
@@ -48,7 +49,7 @@ public class HomeAdminFragment extends Fragment {
         recuperarpreferencias();
         textView=(TextView)v.findViewById(R.id.textViewAuditores);
         Lista=new ArrayList<Datos>();
-        Lista=roles("http://192.168.1.75/consulta.php?tipo="+rol);
+        Lista=roles("http://192.168.1.75/consulta.php?tipo=1");
         Adaptador miadaptador=new Adaptador(getActivity(),Lista);
         listadeentrenamientos.setAdapter(miadaptador);
         listadeentrenamientos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -62,8 +63,8 @@ public class HomeAdminFragment extends Fragment {
         });
         return v;
     }
-    public void agregarelementos(int id,String Nombre){
-        Lista.add(new Datos(id,Nombre,R.drawable.ic_happy_face,"IT consult"));
+    public void agregarelementos(int id,String Nombre,String Apellidos){
+        Lista.add(new Datos(id,Nombre,Apellidos,R.drawable.ic_happy_face,"IT consult"));
         Adaptador miadaptador=new Adaptador(getActivity(),Lista);
         listadeentrenamientos.setAdapter(miadaptador);
     }
@@ -75,7 +76,7 @@ public class HomeAdminFragment extends Fragment {
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         jsonObject = response.getJSONObject(i);
-                        agregarelementos(jsonObject.getInt("id_persona"),jsonObject.getString("nombre_persona")+" "+jsonObject.getString("apellido_paterno")+" "+jsonObject.getString("apellido_materno"));
+                        agregarelementos(jsonObject.getInt("id_persona"),jsonObject.getString("nombre_persona"),jsonObject.getString("apellido_paterno")+" "+jsonObject.getString("apellido_materno"));
                     } catch (JSONException e) {
                         Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }

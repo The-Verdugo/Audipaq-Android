@@ -5,14 +5,24 @@ import java.io.Serializable;
 public class Datos implements Serializable {
     private int id;
     private String Nombre;
+    private String Apellidos;
     private int Imagen;
     private String Empresa;
 
-    public Datos(int id, String nombre, int imagen, String Empresa) {
+    public Datos(int id, String nombre, String apellidos, int imagen, String empresa) {
         this.id = id;
         Nombre = nombre;
+        Apellidos = apellidos;
         Imagen = imagen;
-        this.Empresa = Empresa;
+        Empresa = empresa;
+    }
+
+    public String getApellidos() {
+        return Apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        Apellidos = apellidos;
     }
 
     public String getEmpresa() {

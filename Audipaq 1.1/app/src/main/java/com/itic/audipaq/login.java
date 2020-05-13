@@ -32,7 +32,7 @@ import java.util.Map;
 public class login extends AppCompatActivity {
     EditText usuario,password;
     Button btnIniciar,btnrecuperarpass;
-    String user, pass;
+    String user, pass,nombre;
     int rol;
     RequestQueue requestQueue;
     @Override
@@ -48,13 +48,16 @@ public class login extends AppCompatActivity {
         if (sesion){
             switch (rol){
                 case 1:
-                    Intent intent = new Intent(login.this,MainActivity.class);
-                    startActivity(intent);
-                    finish();
+
                     break;
                 case 2:
                     break;
                 case 3:
+                    break;
+                case 4:
+                    Intent intent = new Intent(login.this,MainActivity.class);
+                    startActivity(intent);
+                    finish();
                     break;
                 default:
             }
@@ -66,7 +69,7 @@ public class login extends AppCompatActivity {
                 pass=password.getText().toString();
                 if (!user.isEmpty()&& !pass.isEmpty()) {
                     //Falta agregar URL del archivo php para iniciar sesion
-                    rol=roles("http://192.168.1.75/consultar.php?correo="+user+"&password="+pass);
+                    rol=roles("http://192.168.1.75/consultar.php?user="+user+"&pass="+pass);
                     IniciarSesion("http://192.168.1.75/validar_usuario.php",rol);
                 }else{
                     Toast.makeText(login.this, "Por favor rellene todos los campos", Toast.LENGTH_SHORT).show();
@@ -83,6 +86,7 @@ public class login extends AppCompatActivity {
                     try {
                         jsonObject = response.getJSONObject(i);
                         rol = Integer.parseInt(jsonObject.getString("fk_id_tipo"));
+                        nombre= jsonObject.getString("nombre_persona");
                     } catch (JSONException e) {
                         Toast.makeText(login.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -105,14 +109,16 @@ public class login extends AppCompatActivity {
                 if (!response.isEmpty()){
                             switch (userrol){
                                 case 1:
-                                    guardarPreferencias(userrol);
-                                    Intent intent = new Intent(login.this,MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
                                     break;
                                 case 2:
                                     break;
                                 case 3:
+                                    break;
+                                case 4:
+                                    guardarPreferencias(userrol,nombre);
+                                    Intent intent = new Intent(login.this,MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
                                     break;
                                 default:
                             }
@@ -137,19 +143,20 @@ public class login extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(request);
     }
-    private void guardarPreferencias(int rol){
+    private void guardarPreferencias(int rol,String nombre){
         SharedPreferences preferences= getSharedPreferences("preferenciaslogin", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor= preferences.edit();
         editor.putString("usuario",user);
         editor.putString("password",pass);
         editor.putBoolean("sesion",true);
         editor.putInt("rol",rol);
+        editor.putString("nombre",nombre);
         editor.commit();
     }
     private void recuperarpreferencias(){
         SharedPreferences preferences = getSharedPreferences("preferenciaslogin",Context.MODE_PRIVATE);
         usuario.setText(preferences.getString("usuario",""));
         password.setText(preferences.getString("password",""));
-        rol=preferences.getInt("rol",4);
+        rol=preferences.getInt("rol",0);
     }
 }

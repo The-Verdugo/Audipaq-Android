@@ -45,7 +45,7 @@ public class Adaptador extends BaseAdapter {
         TextView empresa=(TextView)vista.findViewById(R.id.txvEmpresa);
 
         empresa.setText(listaObjetos.get(i).getEmpresa());
-        textoNombre.setText(listaObjetos.get(i).getNombre());
+        textoNombre.setText(listaObjetos.get(i).getNombre()+" "+listaObjetos.get(i).getApellidos());
         Imagen.setImageResource(listaObjetos.get(i).getImagen());
         return vista;
     }

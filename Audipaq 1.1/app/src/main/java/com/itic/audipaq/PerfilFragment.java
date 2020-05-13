@@ -19,13 +19,15 @@ import androidx.fragment.app.Fragment;
 
 
 public class PerfilFragment extends Fragment {
-
+    Button cerrar;
+    TextView nombre;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Button cerrar;
         View v=inflater.inflate(R.layout.fragment_perfil,container,false);
         cerrar=(Button)v.findViewById(R.id.btnCerrarsesion);
+        nombre=(TextView) v.findViewById(R.id.txtnombrePerfil);
+        recuperarpreferencias();
         cerrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,5 +39,9 @@ public class PerfilFragment extends Fragment {
             }
         });
         return v;
+    }
+    private void recuperarpreferencias(){
+        SharedPreferences preferences = this.getActivity().getSharedPreferences("preferenciaslogin",Context.MODE_PRIVATE);
+        nombre.setText("Bienvenido "+preferences.getString("nombre",""));
     }
 }
