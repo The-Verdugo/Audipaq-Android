@@ -14,6 +14,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".ListaObservaciones"></activity>
         <activity android:name=".detalle" />
+        <activity android:name=".MainActivity_Auditor" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/TemaApp" />

@@ -15,11 +15,11 @@ public class MainActivity_Auditor extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_auditor);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-        BottomNavigationView bottomMenu=findViewById(R.id.Bottom_navigation);
+        BottomNavigationView bottomMenu=findViewById(R.id.Bottom_navigation_aud);
         bottomMenu.setOnNavigationItemSelectedListener(navListener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeAdminFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_aud,new HomeAuditorFragment()).commit();
     }
     private BottomNavigationView.OnNavigationItemSelectedListener navListener= new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -27,13 +27,16 @@ public class MainActivity_Auditor extends AppCompatActivity {
             Fragment selectedFragment =null;
             switch (menuItem.getItemId()){
                 case R.id.nav_home:
-                    selectedFragment=new HomeAdminFragment();
+                    selectedFragment=new HomeAuditorFragment();
+                    break;
+                case R.id.nav_auditorias:
+                    selectedFragment=new AuditoriasAdminFragment();
                     break;
                 case R.id.nav_perfil:
                     selectedFragment=new PerfilFragment();
                     break;
             }
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectedFragment).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container_aud,selectedFragment).commit();
             return true;
         }
     };

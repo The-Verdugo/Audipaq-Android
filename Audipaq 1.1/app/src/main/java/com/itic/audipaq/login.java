@@ -33,7 +33,7 @@ public class login extends AppCompatActivity {
     EditText usuario,password;
     Button btnIniciar,btnrecuperarpass;
     String user, pass,nombre;
-    int rol;
+    int rol,id_persona;
     RequestQueue requestQueue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,9 @@ public class login extends AppCompatActivity {
         if (sesion){
             switch (rol){
                 case 1:
-
+                    Intent intent2 = new Intent(login.this,MainActivity_Auditor.class);
+                    startActivity(intent2);
+                    finish();
                     break;
                 case 2:
                     break;
@@ -70,12 +72,15 @@ public class login extends AppCompatActivity {
                 if (!user.isEmpty()&& !pass.isEmpty()) {
                     //Falta agregar URL del archivo php para iniciar sesion
                     rol=roles("http://192.168.1.75/consultar.php?user="+user+"&pass="+pass);
-                    IniciarSesion("http://192.168.1.75/validar_usuario.php",rol);
+                    IniciarSesion("http://192.168.1.75/validar_usuario.php",rol,id_persona);
                 }else{
                     Toast.makeText(login.this, "Por favor rellene todos los campos", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+    public void asignarid(int id){
+        id_persona=id;
     }
     public int roles(String Url){
         JsonArrayRequest request = new JsonArrayRequest(Url, new Response.Listener<JSONArray>() {
@@ -85,6 +90,7 @@ public class login extends AppCompatActivity {
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         jsonObject = response.getJSONObject(i);
+                        asignarid(Integer.parseInt(jsonObject.getString("id_persona")));
                         rol = Integer.parseInt(jsonObject.getString("fk_id_tipo"));
                         nombre= jsonObject.getString("nombre_persona");
                     } catch (JSONException e) {
@@ -102,22 +108,26 @@ public class login extends AppCompatActivity {
         requestQueue.add(request);
         return rol;
     }
-    public void IniciarSesion(final String Url, final int userrol){
+    public void IniciarSesion(final String Url, final int userrol,final int id){
         StringRequest request= new StringRequest(Request.Method.POST, Url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if (!response.isEmpty()){
                             switch (userrol){
                                 case 1:
+                                    guardarPreferencias(userrol,nombre,id_persona);
+                                    Intent intent1 = new Intent(login.this,MainActivity_Auditor.class);
+                                    startActivity(intent1);
+                                    finish();
                                     break;
                                 case 2:
                                     break;
                                 case 3:
                                     break;
                                 case 4:
-                                    guardarPreferencias(userrol,nombre);
-                                    Intent intent = new Intent(login.this,MainActivity.class);
-                                    startActivity(intent);
+                                    guardarPreferencias(userrol,nombre, id_persona);
+                                    Intent intent4 = new Intent(login.this,MainActivity.class);
+                                    startActivity(intent4);
                                     finish();
                                     break;
                                 default:
@@ -143,7 +153,7 @@ public class login extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(request);
     }
-    private void guardarPreferencias(int rol,String nombre){
+    private void guardarPreferencias(int rol,String nombre, int id){
         SharedPreferences preferences= getSharedPreferences("preferenciaslogin", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor= preferences.edit();
         editor.putString("usuario",user);
@@ -151,6 +161,7 @@ public class login extends AppCompatActivity {
         editor.putBoolean("sesion",true);
         editor.putInt("rol",rol);
         editor.putString("nombre",nombre);
+        editor.putInt("id_persona",id);
         editor.commit();
     }
     private void recuperarpreferencias(){

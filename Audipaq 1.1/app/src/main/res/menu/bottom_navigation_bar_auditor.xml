@@ -5,8 +5,11 @@
     android:icon="@drawable/ic_home"
     android:title="Inicio"/>
     <item
+        android:id="@+id/nav_auditorias"
+        android:icon="@drawable/ic_tabla"
+        android:title="Auditorias"/>
+    <item
         android:id="@+id/nav_perfil"
         android:icon="@drawable/ic_profile"
-
         android:title="Perfil"/>
 </menu>
