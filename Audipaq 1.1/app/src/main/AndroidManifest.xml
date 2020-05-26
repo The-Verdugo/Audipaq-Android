@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ListaObservaciones"></activity>
+        <activity android:name=".detalleAuditoria"></activity>
+        <activity android:name=".ListaObservaciones" />
         <activity android:name=".detalle" />
         <activity android:name=".MainActivity_Auditor" />
         <activity

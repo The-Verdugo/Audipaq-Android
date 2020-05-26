@@ -64,7 +64,7 @@ public class HomeAdminFragment extends Fragment {
         return v;
     }
     public void agregarelementos(int id,String Nombre,String Apellidos){
-        Lista.add(new Datos(id,Nombre,Apellidos,R.drawable.ic_happy_face,"IT consult"));
+        Lista.add(new Datos(id,Nombre,Apellidos,R.drawable.fondo_img_circular,"IT consult"));
         Adaptador miadaptador=new Adaptador(getActivity(),Lista);
         listadeentrenamientos.setAdapter(miadaptador);
     }

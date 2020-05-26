@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.List;
@@ -41,8 +40,8 @@ public class Adaptador extends BaseAdapter {
         LayoutInflater inflater=LayoutInflater.from(context);
         vista=inflater.inflate(R.layout.elemento_auditor,null);
         ImageView Imagen=(ImageView)vista.findViewById(R.id.img_auditor);
-        TextView textoNombre=(TextView)vista.findViewById(R.id.txvnomAuditor);
-        TextView empresa=(TextView)vista.findViewById(R.id.txvEmpresa);
+        TextView textoNombre=(TextView)vista.findViewById(R.id.txvfechaEvento);
+        TextView empresa=(TextView)vista.findViewById(R.id.txvAuditadoEvento);
 
         empresa.setText(listaObjetos.get(i).getEmpresa());
         textoNombre.setText(listaObjetos.get(i).getNombre()+" "+listaObjetos.get(i).getApellidos());

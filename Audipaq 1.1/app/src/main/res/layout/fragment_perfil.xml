@@ -12,12 +12,13 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="55dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_happy_face"
         app:civ_border_color="#10B6F8"
         app:civ_border_width="3dp"
         app:civ_shadow="true"
         app:civ_shadow_color="#000000"
-        app:civ_shadow_radius="10" />
+        app:civ_shadow_radius="10"
+        app:srcCompat="@drawable/fondo_img_circular"
+        tools:srcCompat="@drawable/fondo_img_circular" />
 
     <Button
         android:id="@+id/btnCerrarsesion"

@@ -22,16 +22,15 @@
             app:layout_constraintGuide_begin="151dp" />
 
         <ImageView
-            android:id="@+id/imgLista"
+            android:id="@+id/imgListaAuditorias"
             android:layout_width="395dp"
             android:layout_height="198dp"
-            android:scaleType="centerCrop"
+            android:scaleType="fitCenter"
             app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/fondo_auditoria" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline4"
@@ -104,7 +103,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.036"
             app:layout_constraintStart_toEndOf="@+id/txtnivel2"
-            app:layout_constraintTop_toTopOf="@+id/imgLista"
+            app:layout_constraintTop_toTopOf="@+id/imgListaAuditorias"
             app:layout_constraintVertical_bias="0.018" />
 
         <TextView
@@ -119,7 +118,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.093"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imgLista"
+            app:layout_constraintTop_toTopOf="@+id/imgListaAuditorias"
             app:layout_constraintVertical_bias="0.018" />
 
         <TextView

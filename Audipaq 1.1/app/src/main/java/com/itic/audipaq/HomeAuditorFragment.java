@@ -44,14 +44,22 @@ public class HomeAuditorFragment extends Fragment {
         recuperarpreferencias();
         textView=(TextView)v.findViewById(R.id.textViewAuditores);
         Lista=new ArrayList<DatosAuditorias>();
-        Lista=consulta("http://192.168.1.75/consulta_acta_activa.php?id="+id);
+        switch (rol){
+            case 1:
+                Lista=consulta("http://192.168.1.75/consulta_acta_activa.php?id="+id);
+                break;
+            case 2:
+                Lista=consulta("http://192.168.1.75/consulta_acta_auditado_activa.php?id="+id);
+                break;
+            default:
+        }
         AdaptadorAuditorias miadaptador=new AdaptadorAuditorias(getActivity(),Lista);
         listadeauditorias.setAdapter(miadaptador);
         listadeauditorias.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 DatosAuditorias datos = (DatosAuditorias) adapterView.getItemAtPosition(i);
-                Intent intent= new Intent(getContext(),detalle.class);
+                Intent intent= new Intent(getContext(),detalleAuditoria.class);
                 intent.putExtra("Objeto",(Serializable) datos);
                 startActivity(intent);
             }

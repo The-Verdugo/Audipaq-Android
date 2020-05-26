@@ -42,17 +42,17 @@ public class login extends AppCompatActivity {
         usuario=(EditText)findViewById(R.id.txtemail);
         password=(EditText)findViewById(R.id.txtpassword);
         btnIniciar=(Button)findViewById(R.id.btniniciar);
+
         recuperarpreferencias();
         SharedPreferences preferences= getSharedPreferences("preferenciaslogin",Context.MODE_PRIVATE);
         boolean sesion= preferences.getBoolean("sesion",false);
         if (sesion){
             switch (rol){
                 case 1:
+                case 2:
                     Intent intent2 = new Intent(login.this,MainActivity_Auditor.class);
                     startActivity(intent2);
                     finish();
-                    break;
-                case 2:
                     break;
                 case 3:
                     break;
@@ -115,12 +115,11 @@ public class login extends AppCompatActivity {
                 if (!response.isEmpty()){
                             switch (userrol){
                                 case 1:
+                                case 2:
                                     guardarPreferencias(userrol,nombre,id_persona);
                                     Intent intent1 = new Intent(login.this,MainActivity_Auditor.class);
                                     startActivity(intent1);
                                     finish();
-                                    break;
-                                case 2:
                                     break;
                                 case 3:
                                     break;

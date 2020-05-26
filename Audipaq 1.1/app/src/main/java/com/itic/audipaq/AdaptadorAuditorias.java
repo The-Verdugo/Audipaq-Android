@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -38,16 +39,24 @@ public class AdaptadorAuditorias extends BaseAdapter {
         View vista= view;
         LayoutInflater inflater=LayoutInflater.from(context);
         vista=inflater.inflate(R.layout.elemento_auditoria,null);
+
         TextView nombre =(TextView) vista.findViewById(R.id.txtNombreacta);
         TextView NoActa =(TextView) vista.findViewById(R.id.txtnoacta);
         TextView Fecha =(TextView) vista.findViewById(R.id.txtfechaActa);
         TextView Estatus =(TextView) vista.findViewById(R.id.txtEstadoActa);
-
-        nombre.setText("Auditria a: "+listaObjetos.get(i).getArea());
+        ImageView Imagen =(ImageView) vista.findViewById(R.id.imgListaAuditorias);
+        nombre.setText("Auditoria a: "+listaObjetos.get(i).getArea());
         NoActa.setText(listaObjetos.get(i).getId_persona());
         Fecha.setText(listaObjetos.get(i).getFechainicio());
         Estatus.setText(listaObjetos.get(i).getEstatus());
-
-        return vista;
+        switch (listaObjetos.get(i).getEstatus()){
+            case "inactivo":
+                Imagen.setImageResource(R.drawable.fondo_auditoria);
+                break;
+            case "activo":
+                Imagen.setImageResource(R.drawable.fondo_auditoria_activa);
+                break;
+        }
+       return vista;
     }
 }
