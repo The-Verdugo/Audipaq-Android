@@ -1,2 +1,2 @@
-Green-mind-app
-Aplicación móvil para control de sistema de riego con conexión bluetooth
+# Audipaq-Android
+Aplicación móvil para control de auditorias
